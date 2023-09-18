@@ -83,6 +83,32 @@ public class ProfileDataController implements IProfileDataController {
     public List<ProfileData> getProfilesByBirthdate(String birthdate) {
         return profileDataRepository.findByBirthdate(birthdate);
     }
+    @GetMapping("/searchByAccountType/{accountType}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProfileData> getProfilesByAccountType(String accountType) {
+        return profileDataRepository.findByAccountType(accountType);
+    }
+    @GetMapping("/searchByAccountSubType/{accountSubType}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProfileData> getProfilesByAccountSubType(String accountSubType) {
+        return profileDataRepository.findByAccountSubType(accountSubType);
+    }
+    @GetMapping("/searchByAccountNumber/{accountNumber}")
+    @ResponseStatus(HttpStatus.OK)
+    public ProfileData getProfilesByAccountNumber(String accountNumber) {
+        return profileDataRepository.findByAccountNumber(accountNumber);
+    }
+    @GetMapping("/searchByAccountNickname/{accountNickname}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProfileData> getProfilesByAccountNickname(String accountNickname) {
+        return profileDataRepository.findByAccountNickname(accountNickname);
+    }
+    @GetMapping("/searchByAccountBalance/{accountBalance}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProfileData> getProfilesByAccountBalance(String accountBalance) {
+        return profileDataRepository.findByAccountBalance(accountBalance);
+    }
+
 
     // **************************************************  POST  ******************************************************
 
