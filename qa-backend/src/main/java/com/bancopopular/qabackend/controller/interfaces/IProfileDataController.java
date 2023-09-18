@@ -1,2 +1,4 @@
-package com.bancopopular.qabackend.controller.interfaces;public interface IProfileDataController {
+package com.bancopopular.qabackend.controller.interfaces;
+
+public interface IProfileDataController {
 }

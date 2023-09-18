@@ -1,4 +1,4 @@
-package com.bancopopular.qabackend.service;
+package com.bancopopular.qabackend.service.impl;
 
 import com.bancopopular.qabackend.model.ProfileData;
 import com.bancopopular.qabackend.repository.ProfileDataRepository;
