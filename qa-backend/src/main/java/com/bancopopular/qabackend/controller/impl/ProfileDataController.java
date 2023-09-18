@@ -39,7 +39,12 @@ public class ProfileDataController implements IProfileDataController {
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName,
             @RequestParam(required = false) String maidenName,
-            @RequestParam(required = false) String birthdate
+            @RequestParam(required = false) String birthdate,
+            @RequestParam(required = false) String accountType,
+            @RequestParam(required = false) String accountSubType,
+            @RequestParam(required = false) String accountNumber,
+            @RequestParam(required = false) String accountNickname,
+            @RequestParam(required = false) String accountBalance
     ) throws ResponseStatusException {
         try {
             List<ProfileData> results = new ArrayList<>();
@@ -54,6 +59,11 @@ public class ProfileDataController implements IProfileDataController {
             if (lastName != null) results.addAll(profileDataRepository.findByLastName(lastName));
             if (maidenName != null) results.addAll(profileDataRepository.findByMaidenName(maidenName));
             if (birthdate != null) results.addAll(profileDataRepository.findByBirthdate(birthdate));
+            if (accountType != null) results.addAll(profileDataRepository.findByAccountType(accountType));
+            if (accountSubType != null) results.addAll(profileDataRepository.findByAccountSubType(accountSubType));
+            if (accountNumber != null) results.addAll(profileDataRepository.findByAccountNumber(accountNumber));
+            if (accountNickname != null) results.addAll(profileDataRepository.findByAccountNickname(accountNickname));
+            if (accountBalance != null) results.addAll(profileDataRepository.findByAccountBalance(accountBalance));
             return results;
         } catch (Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Query params not found", e);
