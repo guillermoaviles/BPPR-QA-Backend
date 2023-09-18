@@ -48,10 +48,40 @@ public class ProfileDataController implements IProfileDataController {
     public ProfileData getProfilesByProfileUserId(String profileUserId) {
         return profileDataRepository.findByProfileUserId(profileUserId);
     }
-    @GetMapping("/searchByUsername/{profileUserId}")
+    @GetMapping("/searchByUsername/{username}")
     @ResponseStatus(HttpStatus.OK)
     public ProfileData getProfilesByUsername(String username) {
         return profileDataRepository.findByUsername(username);
+    }
+    @GetMapping("/searchByPass/{pass}")
+    @ResponseStatus(HttpStatus.OK)
+    public ProfileData getProfilesByPass(String pass) {
+        return profileDataRepository.findByPass(pass);
+    }
+    @GetMapping("/searchByEmail/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public ProfileData getProfilesByEmail(String email) {
+        return profileDataRepository.findByEmail(email);
+    }
+    @GetMapping("/searchByFirstName/{firstName}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProfileData> getProfilesByFirstName(String firstName) {
+        return profileDataRepository.findByFirstName(firstName);
+    }
+    @GetMapping("/searchByLastName/{lastName}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProfileData> getProfilesByLastName(String lastName) {
+        return profileDataRepository.findByLastName(lastName);
+    }
+    @GetMapping("/searchByMaidenName/{maidenName}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProfileData> getProfilesByMaidenName(String maidenName) {
+        return profileDataRepository.findByMaidenName(maidenName);
+    }
+    @GetMapping("/searchByBirthdate/{birthdate}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProfileData> getProfilesByBirthdate(String birthdate) {
+        return profileDataRepository.findByBirthdate(birthdate);
     }
 
     // **************************************************  POST  ******************************************************
