@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class QaBackendApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(QaBackendApplication.class, args);
 	}
 
