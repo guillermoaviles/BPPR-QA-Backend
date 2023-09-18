@@ -29,6 +29,11 @@ public class ProfileDataController implements IProfileDataController {
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
     public List<ProfileData> searchProfiles(
+            @RequestParam(required = false) String environment,
+            @RequestParam(required = false) String intendedUse,
+            @RequestParam(required = false) boolean inUse,
+            @RequestParam(required = false) String profileUserId,
+            @RequestParam(required = false) String username,
             @RequestParam(required = false) String pass,
             @RequestParam(required = false) String email,
             @RequestParam(required = false) String firstName,
@@ -38,6 +43,11 @@ public class ProfileDataController implements IProfileDataController {
     ) throws ResponseStatusException {
         try {
             List<ProfileData> results = new ArrayList<>();
+            if (environment != null) results.addAll(profileDataRepository.findByEnvironment(environment));
+            if (intendedUse != null) results.addAll(profileDataRepository.findByIntendedUse(intendedUse));
+            if (inUse) results.addAll(profileDataRepository.findByInUse(true));
+            if (profileUserId != null) results.addAll(profileDataRepository.findByProfileUserId(profileUserId));
+            if (username != null) results.addAll(profileDataRepository.findByUsername(username));
             if (pass != null) results.addAll(profileDataRepository.findByPass(pass));
             if (email != null) results.addAll(profileDataRepository.findByEmail(email));
             if (firstName != null) results.addAll(profileDataRepository.findByFirstName(firstName));

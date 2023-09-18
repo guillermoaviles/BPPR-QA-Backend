@@ -9,7 +9,11 @@ import java.util.List;
 
 @Repository
 public interface ProfileDataRepository extends JpaRepository<ProfileData, String> {
-
+    List<ProfileData> findByEnvironment(String environment);
+    List<ProfileData> findByIntendedUse(String intendedUse);
+    List<ProfileData> findByInUse(boolean inUse);
+    List<ProfileData> findByProfileUserId(String profileUserId);
+    List<ProfileData> findByUsername(String username);
     List<ProfileData> findByPass(String pass);
     List<ProfileData> findByEmail(String email);
     List<ProfileData> findByFirstName(String firstName);
