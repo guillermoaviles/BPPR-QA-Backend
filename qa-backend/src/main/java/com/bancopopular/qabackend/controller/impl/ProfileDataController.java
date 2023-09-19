@@ -201,10 +201,70 @@ public class ProfileDataController implements IProfileDataController {
         profileDataService.updateAccountNickname(profileDataDTO, id);
     }
 
+    @PatchMapping("/{id}/personalInformationEmail")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePersonalInformationEmail(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updatePersonalInformationEmail(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/personalInformationPhone")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePersonalInformationPhone(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updatePersonalInformationPhone(profileDataDTO, id);
+    }
     @PatchMapping("/{id}/accountBalance")
     @ResponseStatus(HttpStatus.OK)
-    public void updateAccountBalance(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
-        profileDataService.updateAccountBalance(profileDataDTO, id);
+    public void updatePersonalInformationAddress(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updatePersonalInformationAddress(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/personalInformationPassword")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePersonalInformationPassword(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updatePersonalInformationPassword(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/personalInformationQuestions")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePersonalInformationQuestions(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updatePersonalInformationQuestions(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/paymentMakePayments")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePaymentMakePayments(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updatePaymentMakePayments(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/cancelFutureTransfer")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateCancelFutureTransfer(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateCancelFutureTransfer(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/makeFuturePayment")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateMakeFuturePayment(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateMakeFuturePayment(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/makeFutureTransfer")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateMakeFutureTransfer(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateMakeFutureTransfer(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/deleteFuturePayment")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateDeleteFuturePayment(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateDeleteFuturePayment(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/editFuturePayment")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateEditFuturePayment(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateEditFuturePayment(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/onOffService")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateOnOffService(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateOnOffService(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/addPayee")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAddPayee(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAddPayee(profileDataDTO, id);
     }
 
     //  ***********************************************  DELETE  ******************************************************

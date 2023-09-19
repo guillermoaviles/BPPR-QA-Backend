@@ -40,4 +40,8 @@ public interface IProfileDataService {
     void updateEmail(ProfileDataDTO profileDataDTO, String id);
 
     void updateFirstName(ProfileDataDTO profileDataDTO, String id);
+
+    void updatePersonalInformationEmail(ProfileDataDTO profileDataDTO, String id);
+
+    void updatePersonalInformationPhone(ProfileDataDTO profileDataDTO, String id);
 }
