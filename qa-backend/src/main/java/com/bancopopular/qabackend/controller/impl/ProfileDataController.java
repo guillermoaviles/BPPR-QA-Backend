@@ -139,17 +139,17 @@ public class ProfileDataController implements IProfileDataController {
             if (environment != null) results.addAll(profileDataRepository.findByEnvironment(environment));
             if (intendedUse != null) results.addAll(profileDataRepository.findByIntendedUse(intendedUse));
             if (inUse) results.addAll(profileDataRepository.findByInUse(true));
-            if (profileUserId != null) results.addAll(profileDataRepository.findByProfileUserId(profileUserId));
-            if (username != null) results.addAll(profileDataRepository.findByUsername(username));
-            if (pass != null) results.addAll(profileDataRepository.findByPass(pass));
-            if (email != null) results.addAll(profileDataRepository.findByEmail(email));
+            if (profileUserId != null) results.add(profileDataRepository.findByProfileUserId(profileUserId));
+            if (username != null) results.add(profileDataRepository.findByUsername(username));
+            if (pass != null) results.add(profileDataRepository.findByPass(pass));
+            if (email != null) results.add(profileDataRepository.findByEmail(email));
             if (firstName != null) results.addAll(profileDataRepository.findByFirstName(firstName));
             if (lastName != null) results.addAll(profileDataRepository.findByLastName(lastName));
             if (maidenName != null) results.addAll(profileDataRepository.findByMaidenName(maidenName));
             if (birthdate != null) results.addAll(profileDataRepository.findByBirthdate(birthdate));
             if (accountType != null) results.addAll(profileDataRepository.findByAccountType(accountType));
             if (accountSubType != null) results.addAll(profileDataRepository.findByAccountSubType(accountSubType));
-            if (accountNumber != null) results.addAll(profileDataRepository.findByAccountNumber(accountNumber));
+            if (accountNumber != null) results.add(profileDataRepository.findByAccountNumber(accountNumber));
             if (accountNickname != null) results.addAll(profileDataRepository.findByAccountNickname(accountNickname));
             if (accountBalance != null) results.addAll(profileDataRepository.findByAccountBalance(accountBalance));
             return results;
@@ -252,7 +252,11 @@ public class ProfileDataController implements IProfileDataController {
     public void updateAccountNickname(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
         profileDataService.updateAccountNickname(profileDataDTO, id);
     }
-
+    @PatchMapping("/{id}/accountBalance")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountBalance(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountBalance(profileDataDTO, id);
+    }
     @PatchMapping("/{id}/personalInformationEmail")
     @ResponseStatus(HttpStatus.OK)
     public void updatePersonalInformationEmail(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
@@ -263,7 +267,7 @@ public class ProfileDataController implements IProfileDataController {
     public void updatePersonalInformationPhone(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
         profileDataService.updatePersonalInformationPhone(profileDataDTO, id);
     }
-    @PatchMapping("/{id}/accountBalance")
+    @PatchMapping("/{id}/personalInformationAddress")
     @ResponseStatus(HttpStatus.OK)
     public void updatePersonalInformationAddress(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
         profileDataService.updatePersonalInformationAddress(profileDataDTO, id);
@@ -319,51 +323,5 @@ public class ProfileDataController implements IProfileDataController {
         profileDataService.updateAddPayee(profileDataDTO, id);
     }
 
-    @PatchMapping("/{id}/lastName")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateLastName(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
-       profileDataService.updateLastName(profileDataDTO, id);
-    }
-
-    @PatchMapping("/{id}/maidenName")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateMaidenName(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
-        profileDataService.updateMaidenName(profileDataDTO, id);
-    }
-
-    @PatchMapping("/{id}/birthdate")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateBirthdate(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
-        profileDataService.updateBirthdate(profileDataDTO, id);
-    }
-
-    @PatchMapping("/{id}/accountType")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateAccountType(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
-        profileDataService.updateAccountType(profileDataDTO, id);
-    }
-    @PatchMapping("/{id}/accountSubType")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateAccountSubType(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
-        profileDataService.updateAccountSubType(profileDataDTO, id);
-    }
-
-    @PatchMapping("/{id}/accountNumber")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateAccountNumber(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
-        profileDataService.updateAccountNumber(profileDataDTO, id);
-    }
-
-    @PatchMapping("/{id}/accountNickname")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateAccountNickname(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
-        profileDataService.updateAccountNickname(profileDataDTO, id);
-    }
-
-    @PatchMapping("/{id}/accountBalance")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateAccountBalance(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
-        profileDataService.updateAccountBalance(profileDataDTO, id);
-    }
     //  ***********************************************  DELETE  ******************************************************
 }

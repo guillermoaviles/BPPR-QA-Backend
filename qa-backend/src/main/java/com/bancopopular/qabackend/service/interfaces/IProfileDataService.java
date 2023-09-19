@@ -13,8 +13,6 @@ public interface IProfileDataService {
 
     // PUT
     ProfileData updateProfileData(ProfileDataDTO profileDataDTO, String id);
-  
-    List<ProfileData> getAllProfiles();
 
     void updateLastName(ProfileDataDTO profileDataDTO, String id);
 

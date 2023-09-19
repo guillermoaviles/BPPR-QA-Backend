@@ -53,115 +53,6 @@ public class ProfileDataService implements IProfileDataService {
 
     // PATCH
     @Override
-    public void updateLastName(ProfileDataDTO profileDataDTO, String id) {
-        Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
-        if (profileDataOptional.isPresent()) {
-            ProfileData profileData = profileDataOptional.get();
-            profileData.setLastName(profileDataDTO.getLastName());
-            profileDataRepository.save(profileData);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID: " + id + " not found.");
-        }
-    }
-
-    @Override
-    public void updateMaidenName(ProfileDataDTO profileDataDTO, String id) {
-        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
-        if (profileDataOptional.isPresent()) {
-            ProfileData profileData = profileDataOptional.get();
-            profileData.setMaidenName(profileDataDTO.getMaidenName());
-            profileDataRepository.save(profileData);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID: " + id + " not found.");
-        }
-    }
-
-    @Override
-    public void updateBirthdate(ProfileDataDTO profileDataDTO, String id) {
-        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
-        if (profileDataOptional.isPresent()) {
-            ProfileData profileData = profileDataOptional.get();
-            profileData.setBirthdate(profileDataDTO.getBirthdate());
-            profileDataRepository.save(profileData);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID: " + id + " not found.");
-        }
-    }
-
-    @Override
-    public void updateAccountType(ProfileDataDTO profileDataDTO, String id) {
-        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
-        if (profileDataOptional.isPresent()) {
-            ProfileData profileData = profileDataOptional.get();
-            profileData.setAccountType(profileDataDTO.getAccountType());
-            profileDataRepository.save(profileData);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID: " + id + " not found.");
-        }
-    }
-
-    @Override
-    public void updateAccountSubType(ProfileDataDTO profileDataDTO, String id) {
-        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
-        if (profileDataOptional.isPresent()) {
-            ProfileData profileData = profileDataOptional.get();
-            profileData.setAccountSubType(profileDataDTO.getAccountSubType());
-            profileDataRepository.save(profileData);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID: " + id + " not found.");
-        }
-    }
-
-    @Override
-    public void updateAccountNumber(ProfileDataDTO profileDataDTO, String id) {
-        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
-        if (profileDataOptional.isPresent()) {
-            ProfileData profileData = profileDataOptional.get();
-            profileData.setAccountNumber(profileDataDTO.getAccountNumber());
-            profileDataRepository.save(profileData);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID: " + id + " not found.");
-        }
-    }
-
-    @Override
-    public void updateAccountNickname(ProfileDataDTO profileDataDTO, String id) {
-        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
-        if (profileDataOptional.isPresent()) {
-            ProfileData profileData = profileDataOptional.get();
-            profileData.setAccountNickname(profileDataDTO.getAccountNickname());
-            profileDataRepository.save(profileData);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID: " + id + " not found.");
-        }
-    }
-
-    @Override
-    public void updateAccountBalance(ProfileDataDTO profileDataDTO, String id) {
-        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
-        if (profileDataOptional.isPresent()) {
-            ProfileData profileData = profileDataOptional.get();
-            profileData.setAccountBalance(profileDataDTO.getAccountBalance());
-            profileDataRepository.save(profileData);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID: " + id + " not found.");
-        }
-    }
-
-    // DELETE
-    @Override
-    public void deleteProfile(String id) {
-        try {
-            if (profileDataRepository.existsById(id)) {
-                profileDataRepository.deleteById(id);
-            } else {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID " + id + " not found.");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to delete profile", e);
-        }
-    }
-    @Override
     public void updateEnvironment(ProfileDataDTO profileDataDTO, String id) {
         Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
         if (profileDataOptional.isPresent()){
@@ -479,6 +370,20 @@ public class ProfileDataService implements IProfileDataService {
             profileDataRepository.save(profileData);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    // DELETE
+    @Override
+    public void deleteProfile(String id) {
+        try {
+            if (profileDataRepository.existsById(id)) {
+                profileDataRepository.deleteById(id);
+            } else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID " + id + " not found.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to delete profile", e);
         }
     }
 }
