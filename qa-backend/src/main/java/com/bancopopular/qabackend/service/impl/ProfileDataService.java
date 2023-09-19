@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,16 +33,16 @@ public class ProfileDataService implements IProfileDataService {
        try {
            Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
            if (profileDataOptional.isPresent()) {
-               ProfileData profileData = profileDataOptional.get();
-               profileData.setProfileUserId(id);
-               profileData.setUsername(profileDataDTO.getUsername());
-               profileData.setPass(profileDataDTO.getPass());
-               profileData.setEmail(profileDataDTO.getEmail());
-               profileData.setFirstName(profileDataDTO.getFirstName());
-               profileData.setLastName(profileDataDTO.getLastName());
-               if (profileDataDTO.getMaidenName() != null) profileData.setMaidenName(profileDataDTO.getMaidenName());
-               profileData.setBirthdate(profileDataDTO.getBirthdate());
-               return profileDataRepository.save(profileData);
+               ProfileData existingProfileData = profileDataOptional.get();
+               existingProfileData.setProfileUserId(id);
+               existingProfileData.setUsername(profileDataDTO.getUsername());
+               existingProfileData.setPass(profileDataDTO.getPass());
+               existingProfileData.setEmail(profileDataDTO.getEmail());
+               existingProfileData.setFirstName(profileDataDTO.getFirstName());
+               existingProfileData.setLastName(profileDataDTO.getLastName());
+               existingProfileData.setMaidenName(profileDataDTO.getMaidenName());
+               existingProfileData.setBirthdate(profileDataDTO.getBirthdate());
+               return profileDataRepository.save(existingProfileData);
            } else {
                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile with ID: " + id + " not found.");
            }
