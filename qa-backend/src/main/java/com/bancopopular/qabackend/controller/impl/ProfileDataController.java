@@ -162,6 +162,12 @@ public class ProfileDataController implements IProfileDataController {
 
     // **************************************************  POST  ******************************************************
 
+    @PostMapping("/new")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveProfileData(@RequestBody ProfileData profileData) {
+        profileDataRepository.save(profileData);
+    }
+
     // **************************************************  PUT  *******************************************************
 
     // *************************************************  PATCH  ******************************************************
