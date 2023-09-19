@@ -33,7 +33,6 @@ public class ProfileDataService implements IProfileDataService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
-
     @Override
     public void updateIntendedUse(ProfileDataDTO profileDataDTO, String id) {
         Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
@@ -45,7 +44,6 @@ public class ProfileDataService implements IProfileDataService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
-
     @Override
     public void updateInUse(ProfileDataDTO profileDataDTO, String id) {
         Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
@@ -57,43 +55,72 @@ public class ProfileDataService implements IProfileDataService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
-
     @Override
     public void updateProfileUserId(ProfileDataDTO profileDataDTO, String id) {
-
+        Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setProfileUserId(profileDataDTO.getProfileUserId());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
     }
-
     @Override
     public void updateUsername(ProfileDataDTO profileDataDTO, String id) {
-
+        Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setUsername(profileDataDTO.getUsername());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
     }
-
     @Override
     public void updatePass(ProfileDataDTO profileDataDTO, String id) {
-
+        Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setPass(profileDataDTO.getPass());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
     }
-
     @Override
     public void updateEmail(ProfileDataDTO profileDataDTO, String id) {
-
+        Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setEmail(profileDataDTO.getEmail());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
     }
-
     @Override
     public void updateFirstName(ProfileDataDTO profileDataDTO, String id) {
-
+        Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setEmail(profileDataDTO.getEmail());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
     }
     @Override
     public void updateLastName(ProfileDataDTO profileDataDTO, String id){
         Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
         if (profileDataOptional.isPresent()){
             ProfileData profileData = profileDataOptional.get();
-            profileData.setLastName(profileDataDTO.getLastName());
+            profileData.setFirstName(profileDataDTO.getFirstName());
             profileDataRepository.save(profileData);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
-
     @Override
     public void updateMaidenName(ProfileDataDTO profileDataDTO, String id){
         Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
@@ -105,7 +132,6 @@ public class ProfileDataService implements IProfileDataService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
-
     @Override
     public void updateBirthdate(ProfileDataDTO profileDataDTO, String id){
         Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
@@ -117,7 +143,6 @@ public class ProfileDataService implements IProfileDataService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
-
     @Override
     public void updateAccountType(ProfileDataDTO profileDataDTO, String id){
         Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
@@ -129,7 +154,6 @@ public class ProfileDataService implements IProfileDataService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
-
     @Override
     public void updateAccountSubType(ProfileDataDTO profileDataDTO, String id){
         Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
@@ -141,7 +165,6 @@ public class ProfileDataService implements IProfileDataService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
-
     @Override
     public void updateAccountNumber(ProfileDataDTO profileDataDTO, String id){
         Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
@@ -153,7 +176,6 @@ public class ProfileDataService implements IProfileDataService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
-
     @Override
     public void updateAccountNickname(ProfileDataDTO profileDataDTO, String id){
         Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
@@ -165,7 +187,6 @@ public class ProfileDataService implements IProfileDataService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
-
     @Override
     public void updateAccountBalance(ProfileDataDTO profileDataDTO, String id){
         Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
