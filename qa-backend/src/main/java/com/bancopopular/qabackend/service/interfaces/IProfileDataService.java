@@ -4,10 +4,17 @@ import com.bancopopular.qabackend.controller.dto.ProfileDataDTO;
 import com.bancopopular.qabackend.model.ProfileData;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IProfileDataService {
-    List<ProfileData> getAllProfiles();
 
+    // POST
+    ProfileData createProfileData(ProfileData profileData);
+
+    // PUT
+    ProfileData updateProfileData(ProfileDataDTO profileDataDTO, String id);
+  
+    List<ProfileData> getAllProfiles();
 
     void updateLastName(ProfileDataDTO profileDataDTO, String id);
 
@@ -24,6 +31,8 @@ public interface IProfileDataService {
     void updateAccountNickname(ProfileDataDTO profileDataDTO, String id);
 
     void updateAccountBalance(ProfileDataDTO profileDataDTO, String id);
+
+    void deleteProfile(String id);
 
     void updateEnvironment(ProfileDataDTO profileDataDTO, String id);
 

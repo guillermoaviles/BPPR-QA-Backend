@@ -1,6 +1,9 @@
 package com.bancopopular.qabackend.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,10 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfileData {
+
     private String environment;
     private String intendedUse;
-
     private boolean inUse;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String profileUserId;
     private String username;
     private String pass;
@@ -31,21 +37,16 @@ public class ProfileData {
     private String accountBalance;
 
     //Customer Alerts Configuration
-
     private boolean personalInformationEmail;
     private boolean personalInformationPhone;
-
     private boolean personalInformationAddress;
     private boolean personalInformationPassword;
-
     private boolean personalInformationQuestions;
     private boolean paymentMakePayments;
     private boolean cancelFutureTransfer;
     private boolean makeFuturePayment;
-
     private boolean makeFutureTransfer;
     private boolean deleteFuturePayment;
-
     private boolean editFuturePayment;
     private boolean onOffService;
     private boolean addPayee;
