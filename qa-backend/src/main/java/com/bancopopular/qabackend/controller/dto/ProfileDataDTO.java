@@ -21,6 +21,29 @@ public class ProfileDataDTO {
     private String accountNumber;
     private String accountNickname;
     private String accountBalance;
+    private boolean personalInformationEmail;
+    private boolean personalInformationPhone;
+
+    private boolean personalInformationAddress;
+    private boolean personalInformationPassword;
+
+    private boolean personalInformationQuestions;
+    private boolean paymentMakePayments;
+    private boolean cancelFutureTransfer;
+    private boolean makeFuturePayment;
+
+    private boolean makeFutureTransfer;
+    private boolean deleteFuturePayment;
+
+    private boolean editFuturePayment;
+    private boolean onOffService;
+    private boolean addPayee;
+
+    // Payee Data
+    private String nickname;
+    private String payeeName;
+    private String payeeAccountNumber;
+    private boolean eBill;
 
     public String getEnvironment() {
         return environment;
@@ -148,5 +171,145 @@ public class ProfileDataDTO {
 
     public void setAccountBalance(String accountBalance) {
         this.accountBalance = accountBalance;
+    }
+
+    public boolean getPersonalInformationEmail() {
+        return personalInformationEmail;
+    }
+
+    public boolean isPersonalInformationEmail() {
+        return personalInformationEmail;
+    }
+
+    public void setPersonalInformationEmail(boolean personalInformationEmail) {
+        this.personalInformationEmail = personalInformationEmail;
+    }
+
+    public boolean isPersonalInformationPhone() {
+        return personalInformationPhone;
+    }
+
+    public void setPersonalInformationPhone(boolean personalInformationPhone) {
+        this.personalInformationPhone = personalInformationPhone;
+    }
+
+    public boolean isPersonalInformationAddress() {
+        return personalInformationAddress;
+    }
+
+    public void setPersonalInformationAddress(boolean personalInformationAddress) {
+        this.personalInformationAddress = personalInformationAddress;
+    }
+
+    public boolean isPersonalInformationPassword() {
+        return personalInformationPassword;
+    }
+
+    public void setPersonalInformationPassword(boolean personalInformationPassword) {
+        this.personalInformationPassword = personalInformationPassword;
+    }
+
+    public boolean isPersonalInformationQuestions() {
+        return personalInformationQuestions;
+    }
+
+    public void setPersonalInformationQuestions(boolean personalInformationQuestions) {
+        this.personalInformationQuestions = personalInformationQuestions;
+    }
+
+    public boolean isPaymentMakePayments() {
+        return paymentMakePayments;
+    }
+
+    public void setPaymentMakePayments(boolean paymentMakePayments) {
+        this.paymentMakePayments = paymentMakePayments;
+    }
+
+    public boolean isCancelFutureTransfer() {
+        return cancelFutureTransfer;
+    }
+
+    public void setCancelFutureTransfer(boolean cancelFutureTransfer) {
+        this.cancelFutureTransfer = cancelFutureTransfer;
+    }
+
+    public boolean isMakeFuturePayment() {
+        return makeFuturePayment;
+    }
+
+    public void setMakeFuturePayment(boolean makeFuturePayment) {
+        this.makeFuturePayment = makeFuturePayment;
+    }
+
+    public boolean isMakeFutureTransfer() {
+        return makeFutureTransfer;
+    }
+
+    public void setMakeFutureTransfer(boolean makeFutureTransfer) {
+        this.makeFutureTransfer = makeFutureTransfer;
+    }
+
+    public boolean isDeleteFuturePayment() {
+        return deleteFuturePayment;
+    }
+
+    public void setDeleteFuturePayment(boolean deleteFuturePayment) {
+        this.deleteFuturePayment = deleteFuturePayment;
+    }
+
+    public boolean isEditFuturePayment() {
+        return editFuturePayment;
+    }
+
+    public void setEditFuturePayment(boolean editFuturePayment) {
+        this.editFuturePayment = editFuturePayment;
+    }
+
+    public boolean isOnOffService() {
+        return onOffService;
+    }
+
+    public void setOnOffService(boolean onOffService) {
+        this.onOffService = onOffService;
+    }
+
+    public boolean isAddPayee() {
+        return addPayee;
+    }
+
+    public void setAddPayee(boolean addPayee) {
+        this.addPayee = addPayee;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getPayeeName() {
+        return payeeName;
+    }
+
+    public void setPayeeName(String payeeName) {
+        this.payeeName = payeeName;
+    }
+
+    public String getPayeeAccountNumber() {
+        return payeeAccountNumber;
+    }
+
+    public void setPayeeAccountNumber(String payeeAccountNumber) {
+        this.payeeAccountNumber = payeeAccountNumber;
+    }
+
+    public boolean iseBill() {
+        return eBill;
+    }
+
+    public void seteBill(boolean eBill) {
+        this.eBill = eBill;
     }
 }
