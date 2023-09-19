@@ -1,5 +1,6 @@
 package com.bancopopular.qabackend.controller.impl;
 
+import com.bancopopular.qabackend.controller.dto.ProfileDataDTO;
 import com.bancopopular.qabackend.controller.interfaces.IProfileDataController;
 import com.bancopopular.qabackend.model.ProfileData;
 import com.bancopopular.qabackend.repository.ProfileDataRepository;
@@ -65,9 +66,56 @@ public class ProfileDataController implements IProfileDataController {
             if (accountNickname != null) results.addAll(profileDataRepository.findByAccountNickname(accountNickname));
             if (accountBalance != null) results.addAll(profileDataRepository.findByAccountBalance(accountBalance));
             return results;
-        } catch (Exception e){
+        } catch (ResponseStatusException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Query params not found", e);
         }
 
+    }
+
+    @PatchMapping("/{id}/lastName")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateLastName(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+       profileDataService.updateLastName(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/maidenName")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateMaidenName(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateMaidenName(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/birthdate")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateBirthdate(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateBirthdate(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/accountType")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountType(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountType(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/accountSubType")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountSubType(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountSubType(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/accountNumber")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountNumber(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountNumber(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/accountNickname")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountNickname(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountNickname(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/accountBalance")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountBalance(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountBalance(profileDataDTO, id);
     }
 }
