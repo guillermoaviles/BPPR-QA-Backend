@@ -1,15 +1,13 @@
 package com.bancopopular.qabackend.controller.impl;
 
+import com.bancopopular.qabackend.controller.dto.ProfileDataDTO;
 import com.bancopopular.qabackend.controller.interfaces.IProfileDataController;
 import com.bancopopular.qabackend.model.ProfileData;
 import com.bancopopular.qabackend.repository.ProfileDataRepository;
 import com.bancopopular.qabackend.service.impl.ProfileDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -115,6 +113,99 @@ public class ProfileDataController implements IProfileDataController {
     // **************************************************  PUT  *******************************************************
 
     // *************************************************  PATCH  ******************************************************
+
+    @PatchMapping("/{id}/environment")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateEnvironment(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateEnvironment(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/intendedUse")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateIntendedUse(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateIntendedUse(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/inUse")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateInUse(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateInUse(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/profileUserId")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateProfileUserId(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateProfileUserId(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/username")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateUsername(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateUsername(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/pass")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePass(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updatePass(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/email")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateEmail(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateEmail(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/firstName")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateFirstName(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateFirstName(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/lastName")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateLastName(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateLastName(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/maidenName")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateMaidenName(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateMaidenName(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/birthdate")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateBirthdate(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateBirthdate(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/accountType")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountType(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountType(profileDataDTO, id);
+    }
+    @PatchMapping("/{id}/accountSubType")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountSubType(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountSubType(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/accountNumber")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountNumber(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountNumber(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/accountNickname")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountNickname(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountNickname(profileDataDTO, id);
+    }
+
+    @PatchMapping("/{id}/accountBalance")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAccountBalance(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateAccountBalance(profileDataDTO, id);
+    }
 
     //  ***********************************************  DELETE  ******************************************************
 }
