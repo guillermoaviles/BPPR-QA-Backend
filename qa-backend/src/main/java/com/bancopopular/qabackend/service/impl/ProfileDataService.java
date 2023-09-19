@@ -49,7 +49,7 @@ public class ProfileDataService implements IProfileDataService {
         Optional<ProfileData> profileDataOptional =profileDataRepository.findById(id);
         if (profileDataOptional.isPresent()){
             ProfileData profileData = profileDataOptional.get();
-            profileData.setIntendedUse(profileDataDTO.getIntendedUse());
+            profileData.setInUse(profileDataDTO.isInUse());
             profileDataRepository.save(profileData);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
@@ -193,6 +193,160 @@ public class ProfileDataService implements IProfileDataService {
         if (profileDataOptional.isPresent()){
             ProfileData profileData = profileDataOptional.get();
             profileData.setAccountBalance(profileDataDTO.getAccountBalance());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+    @Override
+    public void updatePersonalInformationEmail(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setPersonalInformationEmail(profileDataDTO.getPersonalInformationEmail());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updatePersonalInformationPhone(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setPersonalInformationPhone(profileDataDTO.getPersonalInformationPhone());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updatePersonalInformationAddress(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setPersonalInformationAddress(profileDataDTO.getPersonalInformationAddress());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updatePersonalInformationPassword(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setPersonalInformationPassword(profileDataDTO.getPersonalInformationPassword());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updatePersonalInformationQuestions(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setPersonalInformationQuestions(profileDataDTO.getPersonalInformationQuestions());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updatePaymentMakePayments(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setPaymentMakePayments(profileDataDTO.getPaymentMakePayments());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+    @Override
+    public void updateCancelFutureTransfer(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setCancelFutureTransfer(profileDataDTO.getCancelFutureTransfer());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updateMakeFuturePayment(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setMakeFuturePayment(profileDataDTO.getMakeFuturePayment());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updateMakeFutureTransfer(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setMakeFutureTransfer(profileDataDTO.getMakeFutureTransfer());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updateDeleteFuturePayment(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setDeleteFuturePayment(profileDataDTO.getDeleteFuturePayment());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updateEditFuturePayment(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setEditFuturePayment(profileDataDTO.getEditFuturePayment());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updateOnOffService(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setOnOffService(profileDataDTO.getOnOffService());
+            profileDataRepository.save(profileData);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
+        }
+    }
+
+    @Override
+    public void updateAddPayee(ProfileDataDTO profileDataDTO, String id) {
+        Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+        if (profileDataOptional.isPresent()){
+            ProfileData profileData = profileDataOptional.get();
+            profileData.setAddPayee(profileDataDTO.getAddPayee());
             profileDataRepository.save(profileData);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");

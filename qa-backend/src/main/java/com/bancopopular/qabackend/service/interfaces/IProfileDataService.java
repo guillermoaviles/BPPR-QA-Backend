@@ -44,4 +44,26 @@ public interface IProfileDataService {
     void updatePersonalInformationEmail(ProfileDataDTO profileDataDTO, String id);
 
     void updatePersonalInformationPhone(ProfileDataDTO profileDataDTO, String id);
+
+    void updatePersonalInformationAddress(ProfileDataDTO profileDataDTO, String id);
+
+    void updatePersonalInformationPassword(ProfileDataDTO profileDataDTO, String id);
+
+    void updatePersonalInformationQuestions(ProfileDataDTO profileDataDTO, String id);
+
+    void updatePaymentMakePayments(ProfileDataDTO profileDataDTO, String id);
+
+    void updateCancelFutureTransfer(ProfileDataDTO profileDataDTO, String id);
+
+    void updateMakeFuturePayment(ProfileDataDTO profileDataDTO, String id);
+
+    void updateMakeFutureTransfer(ProfileDataDTO profileDataDTO, String id);
+
+    void updateDeleteFuturePayment(ProfileDataDTO profileDataDTO, String id);
+
+    void updateEditFuturePayment(ProfileDataDTO profileDataDTO, String id);
+
+    void updateOnOffService(ProfileDataDTO profileDataDTO, String id);
+
+    void updateAddPayee(ProfileDataDTO profileDataDTO, String id);
 }
