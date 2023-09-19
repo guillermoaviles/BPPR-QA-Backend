@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/profiles")
@@ -23,8 +24,14 @@ public class ProfileDataController implements IProfileDataController {
     ProfileDataService profileDataService;
 
 
+    @GetMapping
     public List<ProfileData> getAllProfiles(){
         return profileDataRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<ProfileData> getProfileDataById(String id) {
+        return profileDataRepository.findById(id);
     }
 
     @GetMapping("/search")
