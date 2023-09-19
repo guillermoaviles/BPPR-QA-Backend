@@ -23,7 +23,6 @@ public class ProfileDataController implements IProfileDataController {
     @Autowired
     ProfileDataService profileDataService;
 
-
     @GetMapping
     public List<ProfileData> getAllProfiles(){
         return profileDataRepository.findAll();
