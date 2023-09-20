@@ -73,4 +73,8 @@ public interface IProfileDataService {
     void updateOnOffService(ProfileDataDTO profileDataDTO, String id);
 
     void updateAddPayee(ProfileDataDTO profileDataDTO, String id);
+
+
+    // JSON EXPORT
+    String exportProfileDataJson(List<String> ids);
 }

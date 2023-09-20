@@ -5,11 +5,14 @@ import com.bancopopular.qabackend.controller.interfaces.IProfileDataController;
 import com.bancopopular.qabackend.model.ProfileData;
 import com.bancopopular.qabackend.repository.ProfileDataRepository;
 import com.bancopopular.qabackend.service.impl.ProfileDataService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -159,7 +162,6 @@ public class ProfileDataController implements IProfileDataController {
 
     }
 
-
     // **************************************************  POST  ******************************************************
 
     @PostMapping("/new")
@@ -168,6 +170,20 @@ public class ProfileDataController implements IProfileDataController {
         profileDataRepository.save(profileData);
     }
 
+    @PostMapping("/export")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void exportProfileDataJson(HttpServletResponse response, @RequestBody List<String> ids){
+        String jsonProfiles = profileDataService.exportProfileDataJson(ids);
+        response.setContentType("application/json");
+        response.setHeader("Content-Disposition", "attachment; filename\"jsonProfiles.json\"");
+        try {
+            OutputStream outputStream = response.getOutputStream();
+            outputStream.write(jsonProfiles.getBytes());
+            outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     // **************************************************  PUT  *******************************************************
 
     // *************************************************  PATCH  ******************************************************
