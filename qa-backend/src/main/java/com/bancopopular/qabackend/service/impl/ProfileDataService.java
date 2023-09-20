@@ -4,10 +4,13 @@ import com.bancopopular.qabackend.controller.dto.ProfileDataDTO;
 import com.bancopopular.qabackend.model.ProfileData;
 import com.bancopopular.qabackend.repository.ProfileDataRepository;
 import com.bancopopular.qabackend.service.interfaces.IProfileDataService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -385,5 +388,21 @@ public class ProfileDataService implements IProfileDataService {
         } catch (Exception e) {
             throw new RuntimeException("Failed to delete profile", e);
         }
+    }
+
+    // JSON EXPORT
+    @Override
+    public String exportProfileDataJson(List<String> ids) {
+        List<ProfileData> profileDataList = new ArrayList<>();
+        for (String id: ids){
+            Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
+            if (profileDataOptional.isPresent()){
+                ProfileData profileData = profileDataOptional.get();
+                profileDataList.add(profileData);
+            }
+        }
+
+        Gson gson = new Gson();
+        return gson.toJson(profileDataList);
     }
 }
