@@ -77,4 +77,9 @@ public interface IProfileDataService {
 
     // JSON EXPORT
     String exportProfileDataJson(List<String> ids);
+
+    // JSON IMPORT
+    void importProfileDataJson(List<ProfileData> profileDataList);
+
+    void importProfileData(List<ProfileData> profileDataList);
 }

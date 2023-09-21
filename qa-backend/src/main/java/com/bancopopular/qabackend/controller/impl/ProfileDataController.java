@@ -184,6 +184,26 @@ public class ProfileDataController implements IProfileDataController {
             e.printStackTrace();
         }
     }
+
+    @PostMapping("/import/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void importProfileDataFromJson(@RequestBody List<ProfileData> profileDataList) {
+        try {
+            profileDataService.importProfileDataJson(profileDataList);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to import profiles from JSON", e);
+        }
+    }
+
+    @PostMapping("/import")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void importProfileData(@RequestBody List<ProfileData> profileDataList) {
+        try {
+            profileDataService.importProfileData(profileDataList);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to import profiles from JSON", e);
+        }
+    }
     // **************************************************  PUT  *******************************************************
 
     // *************************************************  PATCH  ******************************************************
