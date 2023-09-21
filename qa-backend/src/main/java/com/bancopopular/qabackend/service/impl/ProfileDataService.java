@@ -486,10 +486,6 @@ public class ProfileDataService implements IProfileDataService {
     // JSON IMPORT
     @Override
     public void importProfileDataJson(List<ProfileData> profileDataList){
-        for (ProfileData profileData : profileDataList) {
-                profileDataRepository.save(profileData);
-                logger.info("Saved profile data: " + profileData);
-        }
         try {
             FileWriter fileWriter = new FileWriter("profileDataImport-" + LocalDate.now() + ".json");
             gson.toJson(profileDataList, fileWriter);
