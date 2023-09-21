@@ -80,4 +80,6 @@ public interface IProfileDataService {
 
     // JSON IMPORT
     void importProfileDataJson(List<Object> profileDataList);
+
+    void importProfileData(List<ProfileData> profileDataList);
 }
