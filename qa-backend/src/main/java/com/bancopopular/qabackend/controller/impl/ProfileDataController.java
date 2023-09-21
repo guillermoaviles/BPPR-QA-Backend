@@ -13,9 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/profiles")
@@ -119,7 +117,7 @@ public class ProfileDataController implements IProfileDataController {
     }
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProfileData> searchProfiles(
+    public Set<ProfileData> searchProfiles(
             @RequestParam(required = false) String environment,
             @RequestParam(required = false) String intendedUse,
             @RequestParam(required = false) boolean inUse,
@@ -138,7 +136,7 @@ public class ProfileDataController implements IProfileDataController {
             @RequestParam(required = false) String accountBalance
     ) throws ResponseStatusException {
         try {
-            List<ProfileData> results = new ArrayList<>();
+            Set<ProfileData> results = new HashSet<>();
             if (environment != null) results.addAll(profileDataRepository.findByEnvironment(environment));
             if (intendedUse != null) results.addAll(profileDataRepository.findByIntendedUse(intendedUse));
             if (inUse) results.addAll(profileDataRepository.findByInUse(true));
