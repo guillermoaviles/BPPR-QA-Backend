@@ -5,6 +5,7 @@ import com.bancopopular.qabackend.model.ProfileData;
 import com.bancopopular.qabackend.repository.ProfileDataRepository;
 import com.bancopopular.qabackend.service.interfaces.IProfileDataService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +27,7 @@ public class ProfileDataService implements IProfileDataService {
     @Autowired
     ProfileDataRepository profileDataRepository;
 
-    private final Gson gson = new Gson();
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     private static final Logger logger = LoggerFactory.getLogger(ProfileData.class);
 
@@ -434,6 +436,7 @@ public class ProfileDataService implements IProfileDataService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile not found.");
         }
     }
+
     @Override
     public void updateAddPayee(ProfileDataDTO profileDataDTO, String id) {
         Optional<ProfileData> profileDataOptional = profileDataRepository.findById(id);
@@ -482,14 +485,10 @@ public class ProfileDataService implements IProfileDataService {
 
     // JSON IMPORT
     @Override
-    public void importProfileDataJson(List<Object> objectDataList){
-        List<ProfileData> profileDataList =new ArrayList<>();
-        for (Object obj : objectDataList) {
-            if (obj instanceof ProfileData) {
-                profileDataList.add((ProfileData) obj);
-                profileDataRepository.save((ProfileData) obj);
-                logger.info("Saved profile data: " + obj);
-            }
+    public void importProfileDataJson(List<ProfileData> profileDataList){
+        for (ProfileData profileData : profileDataList) {
+                profileDataRepository.save(profileData);
+                logger.info("Saved profile data: " + profileData);
         }
         try {
             FileWriter fileWriter = new FileWriter("profileDataImport-" + LocalDate.now() + ".json");

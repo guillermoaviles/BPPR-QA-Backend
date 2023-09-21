@@ -79,7 +79,7 @@ public interface IProfileDataService {
     String exportProfileDataJson(List<String> ids);
 
     // JSON IMPORT
-    void importProfileDataJson(List<Object> profileDataList);
+    void importProfileDataJson(List<ProfileData> profileDataList);
 
     void importProfileData(List<ProfileData> profileDataList);
 }
