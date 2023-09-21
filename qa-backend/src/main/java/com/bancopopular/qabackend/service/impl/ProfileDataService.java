@@ -5,11 +5,15 @@ import com.bancopopular.qabackend.model.ProfileData;
 import com.bancopopular.qabackend.repository.ProfileDataRepository;
 import com.bancopopular.qabackend.service.interfaces.IProfileDataService;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +23,8 @@ public class ProfileDataService implements IProfileDataService {
 
     @Autowired
     ProfileDataRepository profileDataRepository;
+
+    private final Gson gson = new Gson();
 
     // POST
     @Override
@@ -402,7 +408,16 @@ public class ProfileDataService implements IProfileDataService {
             }
         }
 
-        Gson gson = new Gson();
         return gson.toJson(profileDataList);
+    }
+
+    // JSON IMPORT
+    @Override
+    public void importProfileDataJson(List<Object> profileDataList){
+        for (Object obj : profileDataList) {
+            String jsonProfile = gson.toJson(obj);
+            ProfileData profileData = gson.fromJson(jsonProfile, ProfileData.class);
+            profileDataRepository.save(profileData);
+        }
     }
 }
