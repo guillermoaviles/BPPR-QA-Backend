@@ -14,16 +14,22 @@ public interface ProfileDataRepository extends JpaRepository<ProfileData, String
     List<ProfileData> findByInUse(boolean inUse);
     ProfileData findByProfileUserId(String profileUserId);
     ProfileData findByUsername(String username);
+    List<ProfileData> findByUsernameContaining(String username);
     ProfileData findByPass(String pass);
     ProfileData findByEmail(String email);
+    List<ProfileData> findByEmailContaining(String email);
     List<ProfileData> findByFirstName(String firstName);
+    List<ProfileData> findByFirstNameContaining(String firstName);
     List<ProfileData> findByLastName(String lastName);
+    List<ProfileData> findByLastNameContaining(String lastName);
     List<ProfileData> findByMaidenName(String maidenName);
+    List<ProfileData> findByMaidenNameContaining(String maidenName);
     List<ProfileData> findByBirthdate(String birthdate);
     List<ProfileData> findByAccountType(String accountType);
     List<ProfileData> findByAccountSubType(String accountSubType);
     ProfileData findByAccountNumber(String accountNumber);
     List<ProfileData> findByAccountNickname(String accountNickname);
+    List<ProfileData> findByAccountNicknameContaining(String accountNickname);
     List<ProfileData> findByAccountBalance(String accountBalance);
 }
 
