@@ -141,23 +141,22 @@ public class ProfileDataController implements IProfileDataController {
             if (intendedUse != null) results.addAll(profileDataRepository.findByIntendedUse(intendedUse));
             if (inUse) results.addAll(profileDataRepository.findByInUse(true));
             if (profileUserId != null) results.add(profileDataRepository.findByProfileUserId(profileUserId));
-            if (username != null) results.add(profileDataRepository.findByUsername(username));
+            if (username != null) results.addAll(profileDataRepository.findByUsernameContaining(username));
             if (pass != null) results.add(profileDataRepository.findByPass(pass));
-            if (email != null) results.add(profileDataRepository.findByEmail(email));
-            if (firstName != null) results.addAll(profileDataRepository.findByFirstName(firstName));
-            if (lastName != null) results.addAll(profileDataRepository.findByLastName(lastName));
-            if (maidenName != null) results.addAll(profileDataRepository.findByMaidenName(maidenName));
+            if (email != null) results.addAll(profileDataRepository.findByEmailContaining(email));
+            if (firstName != null) results.addAll(profileDataRepository.findByFirstNameContaining(firstName));
+            if (lastName != null) results.addAll(profileDataRepository.findByLastNameContaining(lastName));
+            if (maidenName != null) results.addAll(profileDataRepository.findByMaidenNameContaining(maidenName));
             if (birthdate != null) results.addAll(profileDataRepository.findByBirthdate(birthdate));
             if (accountType != null) results.addAll(profileDataRepository.findByAccountType(accountType));
             if (accountSubType != null) results.addAll(profileDataRepository.findByAccountSubType(accountSubType));
             if (accountNumber != null) results.add(profileDataRepository.findByAccountNumber(accountNumber));
-            if (accountNickname != null) results.addAll(profileDataRepository.findByAccountNickname(accountNickname));
+            if (accountNickname != null) results.addAll(profileDataRepository.findByAccountNicknameContaining(accountNickname));
             if (accountBalance != null) results.addAll(profileDataRepository.findByAccountBalance(accountBalance));
             return results;
         } catch (ResponseStatusException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Query params not found", e);
         }
-
     }
 
     // **************************************************  POST  ******************************************************

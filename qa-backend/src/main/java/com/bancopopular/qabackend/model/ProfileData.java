@@ -56,4 +56,7 @@ public class ProfileData {
     private String payeeName;
     private String payeeAccountNumber;
     private boolean eBill;
+
+    // User
+    private String user;
 }
