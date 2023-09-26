@@ -45,6 +45,8 @@ public class ProfileDataDTO {
     private String payeeAccountNumber;
     private boolean eBill;
 
+    private String user;
+
     public String getEnvironment() {
         return environment;
     }
@@ -311,6 +313,14 @@ public class ProfileDataDTO {
 
     public void seteBill(boolean eBill) {
         this.eBill = eBill;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }
 

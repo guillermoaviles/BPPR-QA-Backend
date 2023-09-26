@@ -104,7 +104,13 @@ public class SecurityConfig {
 //                .requestMatchers(PUT, "/api/accounts/checking/{accountNumber}").hasAnyAuthority("ROLE_ADMIN")
 //                .requestMatchers(GET, "/api/accounts/checking").hasAnyAuthority("ROLE_ADMIN")
 //                .requestMatchers(GET, "/api/accounts/investment").hasAnyAuthority("ROLE_ADMIN")
+                .requestMatchers(GET, "/api/profiles/all").permitAll()
+                .requestMatchers(GET, "/api/profiles/search?{search}").permitAll()
                 .requestMatchers(POST, "/api/users").permitAll()
+                .requestMatchers(POST, "/api/profiles/import").permitAll()
+                .requestMatchers(POST, "/api/profiles/import/json").permitAll()
+                .requestMatchers(POST, "/api/profiles/export").permitAll()
+                .requestMatchers(PATCH, "/api/profiles/{id}/inUse").permitAll()
                 .anyRequest().authenticated());
         // add the custom authentication filter to the http security object
         http.addFilter(customAuthenticationFilter);
