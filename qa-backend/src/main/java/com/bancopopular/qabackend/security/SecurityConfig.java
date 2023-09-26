@@ -16,6 +16,11 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -35,6 +40,17 @@ public class SecurityConfig {
     // Autowired instance of the AuthenticationManagerBuilder
     @Autowired
     private AuthenticationManagerBuilder authManagerBuilder;
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("*"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
     /**
      * Bean definition for PasswordEncoder
@@ -74,20 +90,21 @@ public class SecurityConfig {
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         // disable CSRF protection
         http.csrf().disable();
+        http.cors();
         // set the session creation policy to stateless
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         // set up authorization for different request matchers and user roles
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/api/login/**").permitAll()
                 .requestMatchers(GET, "/api/users").hasAnyAuthority("ROLE_USER")
-                .requestMatchers(POST, "/api/accounts/checking").hasAnyAuthority("ROLE_USER")
-                .requestMatchers(POST, "/api/accounts/investment").hasAnyAuthority("ROLE_USER")
-                .requestMatchers(PATCH, "/api/accounts/checking/transfer/{fromId}/{destinationId}/{amount}").hasAnyAuthority("ROLE_USER")
-                .requestMatchers(PATCH, "/api/accounts/investment/withdraw/{accountNumber}/{amount}").hasAnyAuthority("ROLE_USER")
-                .requestMatchers(PUT, "/api/accounts/checking/{accountNumber}").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(GET, "/api/accounts/checking").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(GET, "/api/accounts/investment").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(POST, "/api/users").hasAnyAuthority("ROLE_ADMIN")
+//                .requestMatchers(POST, "/api/accounts/checking").hasAnyAuthority("ROLE_USER")
+//                .requestMatchers(POST, "/api/accounts/investment").hasAnyAuthority("ROLE_USER")
+//                .requestMatchers(PATCH, "/api/accounts/checking/transfer/{fromId}/{destinationId}/{amount}").hasAnyAuthority("ROLE_USER")
+//                .requestMatchers(PATCH, "/api/accounts/investment/withdraw/{accountNumber}/{amount}").hasAnyAuthority("ROLE_USER")
+//                .requestMatchers(PUT, "/api/accounts/checking/{accountNumber}").hasAnyAuthority("ROLE_ADMIN")
+//                .requestMatchers(GET, "/api/accounts/checking").hasAnyAuthority("ROLE_ADMIN")
+//                .requestMatchers(GET, "/api/accounts/investment").hasAnyAuthority("ROLE_ADMIN")
+                .requestMatchers(POST, "/api/users").permitAll()
                 .anyRequest().authenticated());
         // add the custom authentication filter to the http security object
         http.addFilter(customAuthenticationFilter);
