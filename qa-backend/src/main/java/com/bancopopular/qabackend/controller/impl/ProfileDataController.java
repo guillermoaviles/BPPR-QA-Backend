@@ -203,6 +203,11 @@ public class ProfileDataController implements IProfileDataController {
     }
     // **************************************************  PUT  *******************************************************
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateProfileData(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateProfileData(profileDataDTO, id);
+    }
     // *************************************************  PATCH  ******************************************************
 
     @PatchMapping("/{id}/environment")

@@ -309,7 +309,7 @@ public class ProfileDataDTO {
         return eBill;
     }
 
-    public void seteBill(boolean eBill) {
+    public void setEBill(boolean eBill) {
         this.eBill = eBill;
     }
 }
