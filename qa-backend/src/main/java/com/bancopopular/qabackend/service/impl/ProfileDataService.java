@@ -59,6 +59,32 @@ public class ProfileDataService implements IProfileDataService {
                existingProfileData.setLastName(profileDataDTO.getLastName());
                existingProfileData.setMaidenName(profileDataDTO.getMaidenName());
                existingProfileData.setBirthdate(profileDataDTO.getBirthdate());
+               existingProfileData.setEnvironment(profileDataDTO.getEnvironment());
+               existingProfileData.setIntendedUse(profileDataDTO.getIntendedUse());
+               existingProfileData.setInUse(profileDataDTO.isInUse());
+               existingProfileData.setAccountType(profileDataDTO.getAccountType());
+               existingProfileData.setAccountSubType(profileDataDTO.getAccountSubType());
+               existingProfileData.setAccountNumber(profileDataDTO.getAccountNumber());
+               existingProfileData.setAccountNickname(profileDataDTO.getAccountNickname());
+               existingProfileData.setAccountBalance(profileDataDTO.getAccountBalance());
+               existingProfileData.setPersonalInformationEmail(profileDataDTO.isPersonalInformationEmail());
+               existingProfileData.setPersonalInformationPhone(profileDataDTO.isPersonalInformationPhone());
+               existingProfileData.setPersonalInformationAddress(profileDataDTO.isPersonalInformationAddress());
+               existingProfileData.setPersonalInformationPassword(profileDataDTO.isPersonalInformationPassword());
+               existingProfileData.setPersonalInformationQuestions(profileDataDTO.isPersonalInformationQuestions());
+               existingProfileData.setPaymentMakePayments(profileDataDTO.isPaymentMakePayments());
+               existingProfileData.setCancelFutureTransfer(profileDataDTO.isCancelFutureTransfer());
+               existingProfileData.setMakeFuturePayment(profileDataDTO.isMakeFuturePayment());
+               existingProfileData.setMakeFutureTransfer(profileDataDTO.isMakeFutureTransfer());
+               existingProfileData.setDeleteFuturePayment(profileDataDTO.isDeleteFuturePayment());
+               existingProfileData.setEditFuturePayment(profileDataDTO.isEditFuturePayment());
+               existingProfileData.setOnOffService(profileDataDTO.isOnOffService());
+               existingProfileData.setAddPayee(profileDataDTO.isAddPayee());
+               existingProfileData.setNickname(profileDataDTO.getNickname());
+               existingProfileData.setPayeeName(profileDataDTO.getPayeeName());
+               existingProfileData.setPayeeAccountNumber(profileDataDTO.getPayeeAccountNumber());
+               existingProfileData.setEBill(profileDataDTO.iseBill());
+
                logger.info("Successfully updated profile data for profile with ID: {}", id);
                return profileDataRepository.save(existingProfileData);
            } else {
