@@ -368,4 +368,10 @@ public class ProfileDataController implements IProfileDataController {
     }
 
     //  ***********************************************  DELETE  ******************************************************
+
+    @DeleteMapping("/{id}/delete")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProfile(@PathVariable String id) {
+        profileDataService.deleteProfile(id);
+    }
 }

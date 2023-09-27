@@ -130,6 +130,7 @@ public class ProfileDataService implements IProfileDataService {
         if (profileDataOptional.isPresent()){
             ProfileData profileData = profileDataOptional.get();
             profileData.setInUse(profileDataDTO.isInUse());
+            profileData.setUser(profileDataDTO.getUser());
             profileDataRepository.save(profileData);
             logger.info("Successfully updated in use for profile with ID: {}", id);
         } else {
