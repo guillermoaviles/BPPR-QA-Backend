@@ -32,7 +32,7 @@ public class ProfileDataController implements IProfileDataController {
         return profileDataRepository.findAll();
     }
     @GetMapping("/{id}")
-    public Optional<ProfileData> getProfileDataById(String id) {
+    public Optional<ProfileData> getProfileDataById(@PathVariable String id) {
         return profileDataRepository.findById(id);
     }
     @GetMapping("/searchByEnvironment/{environment}")
