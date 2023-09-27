@@ -111,6 +111,7 @@ public class SecurityConfig {
                 .requestMatchers(POST, "/api/profiles/import/json").permitAll()
                 .requestMatchers(POST, "/api/profiles/export").permitAll()
                 .requestMatchers(PATCH, "/api/profiles/{id}/inUse").permitAll()
+                .requestMatchers(DELETE, "/api/profiles/{id}/delete").permitAll()
                 .anyRequest().authenticated());
         // add the custom authentication filter to the http security object
         http.addFilter(customAuthenticationFilter);
