@@ -98,11 +98,13 @@ public class SecurityConfig {
                 .requestMatchers("/api/login/**").permitAll()
                 .requestMatchers(GET, "/api/users").hasAnyAuthority("ROLE_USER")
                 .requestMatchers(GET, "/api/profiles/all").permitAll()
+                .requestMatchers(GET, "/api/profiles/{id}").permitAll()
                 .requestMatchers(GET, "/api/profiles/search").permitAll()
                 .requestMatchers(POST, "/api/users").permitAll()
                 .requestMatchers(POST, "/api/profiles/import").permitAll()
                 .requestMatchers(POST, "/api/profiles/import/json").permitAll()
                 .requestMatchers(POST, "/api/profiles/export").permitAll()
+                .requestMatchers(PUT, "/api/profiles/{id}").permitAll()
                 .requestMatchers(PATCH, "/api/profiles/{id}/inUse").permitAll()
                 .requestMatchers(DELETE, "/api/profiles/{id}/delete").permitAll()
                 .anyRequest().authenticated());
