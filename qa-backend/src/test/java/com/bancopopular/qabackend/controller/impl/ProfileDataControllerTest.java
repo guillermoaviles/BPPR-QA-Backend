@@ -1,7 +1,9 @@
 package com.bancopopular.qabackend.controller.impl;
 
+import com.bancopopular.qabackend.controller.dto.ProfileDataDTO;
 import com.bancopopular.qabackend.model.ProfileData;
 import com.bancopopular.qabackend.repository.ProfileDataRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -39,7 +42,8 @@ class ProfileDataControllerTest {
     @BeforeEach
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-        profileData = new ProfileData(null, "dev", "Certification", true, "q23764dy273", "Test 1", "1234", "email@email.com", "Test", "Test", "Test", "10/10/2000", "Credit", "Premia", "347687324", "test_1", "100.00", true, false, false, true, false, false, true, false, false, false, true, true , true, "test1", "Test 1", "347687324", true, null);
+        ProfileData profileData1 = new ProfileData(null, null, null, false, "1", "update_test", null, null, null, null, null, null, "Credit", null, null, null, null, false, false, false, false, false, false, false, false, false, false, false, false, false, null, null, null, false, null);
+        profileDataRepository.save(profileData1);
     }
     @Test
     void whenGetAllProfiles_GivenValidURL_ThenReturnSuccess() throws Exception {
@@ -54,7 +58,7 @@ class ProfileDataControllerTest {
     }
 
     @Test
-    void importProfileData() throws Exception {
+    void whenImportProfileData_GivenValidInput_ThenReturnSuccess() throws Exception {
         List<ProfileData> profileDataList = new ArrayList<>();
 
         ProfileData profileData2 = new ProfileData(null, "prod", "Pipeline", false, "q23764dy274", "UserA", "passA", "userA@email.com", "John", "Doe", "MaidenA", "01/15/1985", "Deposit", "Checking", "1234567890", "My Checking", "500.00", false, false, true, false, true, true, false, true, false, false, true, false, false, "payee1", "Payee 1", "987654321", true, null);
@@ -76,14 +80,50 @@ class ProfileDataControllerTest {
     }
 
     @Test
-    void updateProfileData() {
+    void whenUpdateProfileData_GivenValidBody_ThenReturnSuccess() throws Exception {
+        ProfileData expectedProfileData = new ProfileData(1, null, null, false, "1", "update_test", null, null, null, null, null, null, "Debit", null, null, null, null, false, false, false, false, false, false, false, false, false, false, false, false, false, null, null, null, false, null);
+
+        ProfileDataDTO profileDataDTO = new ProfileDataDTO();
+        profileDataDTO.setProfileUserId("1");
+        profileDataDTO.setUsername("update_test");
+        profileDataDTO.setAccountType("Debit");
+        mockMvc.perform(put("/api/profiles/{id}", "1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(profileDataDTO)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        Optional<ProfileData> updatedProfileData = profileDataRepository.findById("1");
+        assertEquals(expectedProfileData, updatedProfileData.get());
     }
 
     @Test
-    void updateInUse() {
+    void whenUpdateInUse_GivenValidParameter_ThenReturnSuccess() throws Exception {
+        ProfileData expectedProfileData = new ProfileData(1, null, null, true, "1", "update_test", null, null, null, null, null, null, "Credit", null, null, null, null, false, false, false, false, false, false, false, false, false, false, false, false, false, null, null, null, false, null);
+
+        ProfileDataDTO profileDataDTO = new ProfileDataDTO();
+        profileDataDTO.setInUse(true);
+        mockMvc.perform(patch("/api/profiles/{id}/inUse", "1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(profileDataDTO)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        Optional<ProfileData> updatedProfileData = profileDataRepository.findById("1");
+        assertEquals(expectedProfileData, updatedProfileData.get());
     }
 
     @Test
-    void deleteProfile() {
+    void whenDeleteProfile_GivenValidId_ThenReturnSuccess() throws Exception  {
+        Optional<ProfileData> profileDataToDelete = profileDataRepository.findById("1");
+        assertTrue(profileDataToDelete.isPresent());
+
+        mockMvc.perform(delete("/api/profiles/{id}/delete", "1"))
+                .andExpect(status().isNoContent())
+                .andReturn();
+
+        Optional<ProfileData> deletedProfileData = profileDataRepository.findById("1");
+        assertFalse(deletedProfileData.isPresent());
     }
+
 }
