@@ -10,6 +10,7 @@ This is only the backend repository, check out our frontend repository: [QA-Fron
 2. [Features](#features)
 3. [Getting Started](#getting-started)
    - [Prerequisites](#prerequisites)
+   - [API Endpoints](#api-endpoints)
 4. [Documentation](#documentation)
    - [Class Diagram](#class-diagram)
    - [Use Class Diagram](#use-case-diagram)
@@ -41,6 +42,20 @@ git clone https://github.com/guillermoaviles/BPPR-QA-Backend.git
 ```
 cd BPPR-QA-Backend
 ```
+### API Endpoints
+`/api/profiles/`
+
+|TYPE|ROUTE|INFO|
+|---|---|---|
+|GET|/id|Get profile by ID|
+|GET|/searchBy(Attribute)|Find by attribute|
+|GET|/search|Filter through profile data|
+|POST|/new|Add a new profile|
+|POST|/export|Export profiles as JSON|
+|POST|/import|Import profiles|
+|PUT|/{id}|Edit profile data|
+|PATCH|/{id}/(Attribute)|Patch by attribute|
+|DELETE|/{id}|Delete profile by ID|
 
 # Documentation
 
