@@ -36,10 +36,30 @@ class ProfileDataControllerTest {
 
     }
     @Test
-    void getAllProfiles() throws Exception {
+    void whenGetAllProfiles_GivenValidURL_ThenReturnSuccess() throws Exception {
         mockMvc.perform(get("/api/profiles/all").header(HttpHeaders.AUTHORIZATION,"Bearer PutHereMyToken"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
+    }
+
+    @AfterEach
+    void tearDown() {
+    }
+
+    @Test
+    void importProfileData() {
+    }
+
+    @Test
+    void updateProfileData() {
+    }
+
+    @Test
+    void updateInUse() {
+    }
+
+    @Test
+    void deleteProfile() {
     }
 }
