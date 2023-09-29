@@ -12,8 +12,9 @@ This is only the backend repository, check out our frontend repository: [QA-Fron
    - [Prerequisites](#prerequisites)
    - [API Endpoints](#api-endpoints)
 4. [Documentation](#documentation)
+   - [MiBanco Technical Documentation](#mibanco-technical-documentation)
    - [Class Diagram](#class-diagram)
-   - [Use Class Diagram](#use-case-diagram)
+   - [Use Case Diagram](#use-case-diagram)
 6. [Team](#team)
 
 ## Overview
