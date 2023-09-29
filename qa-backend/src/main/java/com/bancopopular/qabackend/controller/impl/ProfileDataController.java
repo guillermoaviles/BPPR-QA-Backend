@@ -5,14 +5,15 @@ import com.bancopopular.qabackend.controller.interfaces.IProfileDataController;
 import com.bancopopular.qabackend.model.ProfileData;
 import com.bancopopular.qabackend.repository.ProfileDataRepository;
 import com.bancopopular.qabackend.service.impl.ProfileDataService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/profiles")
@@ -31,7 +32,7 @@ public class ProfileDataController implements IProfileDataController {
         return profileDataRepository.findAll();
     }
     @GetMapping("/{id}")
-    public Optional<ProfileData> getProfileDataById(String id) {
+    public Optional<ProfileData> getProfileDataById(@PathVariable String id) {
         return profileDataRepository.findById(id);
     }
     @GetMapping("/searchByEnvironment/{environment}")
@@ -116,7 +117,7 @@ public class ProfileDataController implements IProfileDataController {
     }
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProfileData> searchProfiles(
+    public Set<ProfileData> searchProfiles(
             @RequestParam(required = false) String environment,
             @RequestParam(required = false) String intendedUse,
             @RequestParam(required = false) boolean inUse,
@@ -135,35 +136,78 @@ public class ProfileDataController implements IProfileDataController {
             @RequestParam(required = false) String accountBalance
     ) throws ResponseStatusException {
         try {
-            List<ProfileData> results = new ArrayList<>();
+            Set<ProfileData> results = new HashSet<>();
             if (environment != null) results.addAll(profileDataRepository.findByEnvironment(environment));
             if (intendedUse != null) results.addAll(profileDataRepository.findByIntendedUse(intendedUse));
             if (inUse) results.addAll(profileDataRepository.findByInUse(true));
             if (profileUserId != null) results.add(profileDataRepository.findByProfileUserId(profileUserId));
-            if (username != null) results.add(profileDataRepository.findByUsername(username));
+            if (username != null) results.addAll(profileDataRepository.findByUsernameContaining(username));
             if (pass != null) results.add(profileDataRepository.findByPass(pass));
-            if (email != null) results.add(profileDataRepository.findByEmail(email));
-            if (firstName != null) results.addAll(profileDataRepository.findByFirstName(firstName));
-            if (lastName != null) results.addAll(profileDataRepository.findByLastName(lastName));
-            if (maidenName != null) results.addAll(profileDataRepository.findByMaidenName(maidenName));
+            if (email != null) results.addAll(profileDataRepository.findByEmailContaining(email));
+            if (firstName != null) results.addAll(profileDataRepository.findByFirstNameContaining(firstName));
+            if (lastName != null) results.addAll(profileDataRepository.findByLastNameContaining(lastName));
+            if (maidenName != null) results.addAll(profileDataRepository.findByMaidenNameContaining(maidenName));
             if (birthdate != null) results.addAll(profileDataRepository.findByBirthdate(birthdate));
             if (accountType != null) results.addAll(profileDataRepository.findByAccountType(accountType));
             if (accountSubType != null) results.addAll(profileDataRepository.findByAccountSubType(accountSubType));
             if (accountNumber != null) results.add(profileDataRepository.findByAccountNumber(accountNumber));
-            if (accountNickname != null) results.addAll(profileDataRepository.findByAccountNickname(accountNickname));
+            if (accountNickname != null) results.addAll(profileDataRepository.findByAccountNicknameContaining(accountNickname));
             if (accountBalance != null) results.addAll(profileDataRepository.findByAccountBalance(accountBalance));
             return results;
         } catch (ResponseStatusException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Query params not found", e);
         }
-
     }
-
 
     // **************************************************  POST  ******************************************************
 
+    @PostMapping("/new")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveProfileData(@RequestBody ProfileData profileData) {
+        profileDataRepository.save(profileData);
+    }
+
+    @PostMapping("/export")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void exportProfileDataJson(HttpServletResponse response, @RequestBody List<String> ids){
+        String jsonProfiles = profileDataService.exportProfileDataJson(ids);
+        response.setContentType("application/json");
+        response.setHeader("Content-Disposition", "attachment; filename\"jsonProfiles.json\"");
+        try {
+            OutputStream outputStream = response.getOutputStream();
+            outputStream.write(jsonProfiles.getBytes());
+            outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @PostMapping("/import/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void importProfileDataFromJson(@RequestBody List<ProfileData> profileDataList) {
+        try {
+            profileDataService.importProfileDataJson(profileDataList);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to import profiles from JSON", e);
+        }
+    }
+
+    @PostMapping("/import")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void importProfileData(@RequestBody List<ProfileData> profileDataList) {
+        try {
+            profileDataService.importProfileData(profileDataList);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to import profiles from JSON", e);
+        }
+    }
     // **************************************************  PUT  *******************************************************
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateProfileData(@PathVariable String id, @RequestBody ProfileDataDTO profileDataDTO){
+        profileDataService.updateProfileData(profileDataDTO, id);
+    }
     // *************************************************  PATCH  ******************************************************
 
     @PatchMapping("/{id}/environment")
@@ -324,4 +368,10 @@ public class ProfileDataController implements IProfileDataController {
     }
 
     //  ***********************************************  DELETE  ******************************************************
+
+    @DeleteMapping("/{id}/delete")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProfile(@PathVariable String id) {
+        profileDataService.deleteProfile(id);
+    }
 }

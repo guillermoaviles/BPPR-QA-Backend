@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfileData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String environment;
     private String intendedUse;
     private boolean inUse;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String profileUserId;
     private String username;
     private String pass;
@@ -56,4 +56,7 @@ public class ProfileData {
     private String payeeName;
     private String payeeAccountNumber;
     private boolean eBill;
+
+    // User
+    private String user;
 }
